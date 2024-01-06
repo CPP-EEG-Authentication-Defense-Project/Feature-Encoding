@@ -1,3 +1,4 @@
-# Utility Package Template
+# Feature Encoding
 
-This repository is used as a template for the structure to use for a Python-based utility package.
+This package implements standard methods for encoding biometric feature vectors into binary strings. This is especially
+useful for generating "Biohash-like" feature vector representations.
