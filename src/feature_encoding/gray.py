@@ -23,7 +23,7 @@ class GrayCodeBinaryEncoder(base.BinaryEncoder):
         gray_codes = []
         codebook_size = len(self.gray_codes)
         for value in data:
-            value_index = value - 1
+            value_index = round(value) - 1
             if value_index < 0 or value_index > codebook_size:
                 raise exceptions.EncodingException(
                     f'Value outside of codebook range (0, {codebook_size + 1}), quantization may be needed'
