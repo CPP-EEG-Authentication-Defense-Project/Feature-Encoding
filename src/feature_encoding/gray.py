@@ -1,5 +1,6 @@
 import copy
 import typing
+import numpy as np
 
 from . import base, exceptions
 
@@ -10,8 +11,9 @@ class GrayCodeBinaryEncoder(base.BinaryEncoder):
     target bit size. Data will most likely need to be quantized before being passed through the encoder, to avoid
     values outside the codebook's range.
     """
-    def __init__(self, n: int):
+    def __init__(self, n: int, round_to_whole=False):
         self.gray_codes = self._generate_gray_codes(n)
+        self.round_to_whole = round_to_whole
 
     def convert_to_binary(self, data):
         """
@@ -22,7 +24,10 @@ class GrayCodeBinaryEncoder(base.BinaryEncoder):
         """
         gray_codes = []
         codebook_size = len(self.gray_codes)
-        for value in data:
+        code_indexes = data
+        if self.round_to_whole:
+            code_indexes = np.round(code_indexes)
+        for value in code_indexes:
             value_index = value - 1
             if value_index < 0 or value_index > codebook_size:
                 raise exceptions.EncodingException(
