@@ -29,4 +29,3 @@ class DirectBinaryEncoder(base.BinaryEncoder):
         :return: The binary representation of the number.
         """
         return ''.join('{:0>8b}'.format(c) for c in struct.pack('!f', number))
-
