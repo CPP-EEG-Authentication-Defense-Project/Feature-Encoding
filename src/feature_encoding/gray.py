@@ -28,10 +28,9 @@ class GrayCodeBinaryEncoder(base.BinaryEncoder):
         if self.round_to_whole:
             code_indexes = np.round(code_indexes)
         for value in code_indexes:
-            value_index = value - 1
-            if value_index < 0 or value_index > codebook_size:
+            if value < 0 or value > codebook_size:
                 raise exceptions.EncodingException(
-                    f'Value outside of codebook range (0, {codebook_size + 1}), quantization may be needed'
+                    f'Value ({value}) outside of codebook range (0, {codebook_size + 1}), quantization may be needed'
                 )
             gray_codes.append(self.gray_codes[value])
         return ''.join(gray_codes)
