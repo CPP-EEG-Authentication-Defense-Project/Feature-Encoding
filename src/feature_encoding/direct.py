@@ -15,7 +15,7 @@ class DirectBinaryEncoder(base.BinaryEncoder):
     def convert_to_binary(self, data: np.ndarray) -> str:
         if self.round_to_whole:
             rounded_data = np.round(data)
-            ''.join([np.binary_repr(element) for element in rounded_data])
+            return ''.join([np.binary_repr(element) for element in rounded_data])
         return ''.join([self._convert_float_to_binary(element) for element in data])
 
     @staticmethod
