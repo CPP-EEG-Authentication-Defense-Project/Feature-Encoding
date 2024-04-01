@@ -32,7 +32,7 @@ class GrayCodeBinaryEncoder(base.BinaryEncoder):
                 raise exceptions.EncodingException(
                     f'Value ({value}) outside of codebook range (0, {codebook_size + 1}), quantization may be needed'
                 )
-            gray_codes.append(self.gray_codes[value])
+            gray_codes.append(self.gray_codes[int(value)])
         return ''.join(gray_codes)
 
     @staticmethod
